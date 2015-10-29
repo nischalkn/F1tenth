@@ -1,8 +1,0 @@
-prefix=/home/nischal/Projects/arc/arc_ws/devel
-
-Name: race
-Description: Description of race
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/nischal/Projects/arc/arc_ws/devel/lib 
-Requires: 

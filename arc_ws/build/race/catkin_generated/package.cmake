@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "race")
-set(race_MAINTAINER "nischal <nischal@todo.todo>")
-set(race_DEPRECATED "")
-set(race_VERSION "0.0.0")
-set(race_BUILD_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs")
-set(race_RUN_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs")
-set(race_BUILDTOOL_DEPENDS "catkin")
