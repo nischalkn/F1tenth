@@ -1,5 +1,7 @@
 #include <ros.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Int32.h>
 #include <std_msgs/Empty.h>
 #include <race/drive_values.h>
 ros::NodeHandle  nh;
@@ -10,15 +12,22 @@ int pwm_center_value = 9830;  //  15% duty cycle
 int pwm_lowerlimit = 6554;    //  10% duty cycle
 int pwm_upperlimit = 13108;   //  20% duty cycle
 
+std_msgs::Int32 str_msg;
+ros::Publisher chatter("chatter", &str_msg);
+
+
 void messageDrive( const race::drive_values& pwm )
 {
-  Serial.print("Pwm drive : ");
-  Serial.println(pwm.pwm_drive);
-  Serial.print("Pwm angle : ");
-  Serial.println(pwm.pwm_angle);
+//  Serial.print("Pwm drive : ");
+//  Serial.println(pwm.pwm_drive);
+//  Serial.print("Pwm angle : ");
+//  Serial.println(pwm.pwm_angle);
   
   if(flagStop == false)
   {
+    str_msg.data = pwm.pwm_drive;
+    chatter.publish( &str_msg );
+
     if(pwm.pwm_drive < pwm_lowerlimit)
     {
       analogWrite(5,pwm_lowerlimit);    //  Safety lower limit        
@@ -64,31 +73,32 @@ void messageEmergencyStop( const std_msgs::Bool& flag )
   }
 }
 
-ros::Subscriber<race::drive_values> sub_drive("drive_pwm", messageDrive );
-ros::Subscriber<std_msgs::Bool> sub_stop("eStop", messageEmergencyStop );
+
+ros::Subscriber<race::drive_values> sub_drive("drive_pwm", &messageDrive );
+ros::Subscriber<std_msgs::Bool> sub_stop("eStop", &messageEmergencyStop );
+
 
 void setup() {
-  Serial.begin(115200);
   
   analogWriteFrequency(5, 100);
   analogWriteFrequency(6, 100);
-  analogWriteResolution(12);
+  analogWriteResolution(16);
   analogWrite(5,pwm_center_value);
   analogWrite(6,pwm_center_value);
   pinMode(13,OUTPUT); 
   digitalWrite(13,HIGH);
   pinMode(2,OUTPUT); 
-  digitalWrite(2,HIGH);
+  digitalWrite(2,LOW);
 
   nh.initNode();
   nh.subscribe(sub_drive);
   nh.subscribe(sub_stop);
+
+  nh.advertise(chatter);
 }
 
 void loop() {
   nh.spinOnce();
-  
-  
   // put your main code here, to run repeatedly:
   /*
   if(Serial.available())
