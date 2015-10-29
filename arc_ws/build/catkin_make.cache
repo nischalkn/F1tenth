@@ -1,0 +1,2 @@
+race
+-DCATKIN_DEVEL_PREFIX=/home/nischal/Projects/arc/arc_ws/devel -DCMAKE_INSTALL_PREFIX=/home/nischal/Projects/arc/arc_ws/install -G Unix Makefiles
