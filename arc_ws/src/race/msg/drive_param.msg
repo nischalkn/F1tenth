@@ -1,2 +1,2 @@
-int16 velocity
-int16 angle
+float32 velocity
+float32 angle
