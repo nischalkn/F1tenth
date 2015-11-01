@@ -18,8 +18,8 @@ def callback(data):
 	angle = data.angle
 	print("Velocity: ",velocity,"Angle: ",angle)
 	# Do the computation
-	pwm1 = arduino_map(velocity,0,100,6554,13108);
-	pwm2 = arduino_map(angle,0,100,6554,13108);
+	pwm1 = arduino_map(velocity,-100,100,6554,13108);
+	pwm2 = arduino_map(angle,-100,100,6554,13108);
 	msg = drive_values()
 	msg.pwm_drive = pwm1
 	msg.pwm_angle = pwm2
