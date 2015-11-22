@@ -9,8 +9,8 @@ from race.msg import pid_input
 pub = rospy.Publisher('drive_parameters', drive_param, queue_size=10)
 
 kp = 1.0
-kd = 0.0
-ki = 0.1
+kd = 0.1
+ki = 0.0
 servo_offset = 0.0
 prev_error = 0.0 
 error = 0.0
