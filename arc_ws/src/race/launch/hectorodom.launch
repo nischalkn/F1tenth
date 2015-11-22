@@ -55,4 +55,5 @@
 	</node>
 
 	<node pkg="race" type="hectorOdom" name="hectorOdom" output="screen"/>
+	<node pkg="race" type="amclOdom" name="amclOdom" output="screen"/>
 </launch>
