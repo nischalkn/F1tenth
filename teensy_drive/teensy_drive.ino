@@ -15,6 +15,8 @@ int pwm_upperlimit = 13108;   //  20% duty cycle
 std_msgs::Int32 str_msg;
 ros::Publisher chatter("chatter", &str_msg);
 
+int kill_pin = 2;
+unsigned long duration = 0;
 
 void messageDrive( const race::drive_values& pwm )
 {
@@ -87,8 +89,8 @@ void setup() {
   analogWrite(6,pwm_center_value);
   pinMode(13,OUTPUT); 
   digitalWrite(13,HIGH);
-  pinMode(2,OUTPUT); 
-  digitalWrite(2,LOW);
+  pinMode(2,INPUT); 
+//  digitalWrite(2,LOW);
 
   nh.initNode();
   nh.subscribe(sub_drive);
@@ -99,6 +101,13 @@ void setup() {
 
 void loop() {
   nh.spinOnce();
+  duration = pulseIn(kill_pin, HIGH, 30000);
+  while(duration > 1900)
+  {
+    duration = pulseIn(kill_pin, HIGH, 30000);
+    analogWrite(5,pwm_center_value);
+    analogWrite(6,pwm_center_value);        
+  }
   // put your main code here, to run repeatedly:
   /*
   if(Serial.available())
