@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   message_generation
+  geometry_msgs
   tf
 )
 
@@ -106,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES race
-  CATKIN_DEPENDS roscpp rospy sensor_msgs std_msgs 
+  CATKIN_DEPENDS roscpp rospy sensor_msgs std_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 
