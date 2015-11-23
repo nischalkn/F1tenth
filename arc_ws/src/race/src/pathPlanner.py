@@ -29,7 +29,8 @@ def path_error(data):
 	y = data.pose.position.y
 	x = data.pose.position.x
 
-	euler = tf.transformations.euler_from_quaternion(data.pose.orientation)
+	quaternion = (data.pose.orientation.x, data.pose.orientation.y, data.pose.orientation.z, data.pose.orientation.w)
+	euler = tf.transformations.euler_from_quaternion(quaternion)
 	
 	roll = euler[0]
 	pitch = euler[1]
