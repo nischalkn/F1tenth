@@ -136,6 +136,7 @@ include_directories(
 add_executable(odom_scan_matcher src/getOdomFromMatcher.cpp)
 add_executable(hectorOdom src/hectorOdom.cpp)
 add_executable(amclOdom src/amclOdom.cpp)
+add_executable(processScan src/process_scan.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -151,6 +152,9 @@ add_executable(amclOdom src/amclOdom.cpp)
    ${catkin_LIBRARIES}
  )
 target_link_libraries(amclOdom
+   ${catkin_LIBRARIES}
+ )
+target_link_libraries(processScan
    ${catkin_LIBRARIES}
  )
 
