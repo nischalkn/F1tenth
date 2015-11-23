@@ -36,6 +36,6 @@ def callback(data):
 	pub.publish(msg)
 
 if __name__ == '__main__':
-	rospy.init_node('avg_pose', anonymous=True)
+	rospy.init_node('amcl_particle', anonymous=True)
 	rospy.Subscriber("particlecloud", PoseArray, callback)
 	rospy.spin()

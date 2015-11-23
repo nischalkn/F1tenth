@@ -56,4 +56,5 @@
 
 	<node pkg="race" type="hectorOdom" name="hectorOdom" output="screen"/>
 	<node pkg="race" type="amclOdom" name="amclOdom" output="screen"/>
+	<node pkg="race" type="amcl_particle" name="amcl_particle" output="screen"/>
 </launch>
