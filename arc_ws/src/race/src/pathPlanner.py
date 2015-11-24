@@ -36,8 +36,8 @@ def path_error(data):
 	pitch = euler[1]
 	theta = (-1)*euler[2]
 
-	y = y + l*math.cos(theta)
-	x = x + l*math.sin(theta)
+	y = y + l*math.sin(theta)
+	x = x + l*math.cos(theta)
 	m = (y2-y1) / (x2-x1)
 	c = y1 - m*x1
 	error = (-1)*(y - m*x - c)
