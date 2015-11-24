@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-
+import math
 from race.msg import pid_input
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Quaternion
@@ -28,14 +28,16 @@ def path_error(data):
 
 	y = data.pose.position.y
 	x = data.pose.position.x
-
+	l = 0.5;
 	quaternion = (data.pose.orientation.x, data.pose.orientation.y, data.pose.orientation.z, data.pose.orientation.w)
 	euler = tf.transformations.euler_from_quaternion(quaternion)
 	
 	roll = euler[0]
 	pitch = euler[1]
-	theta = euler[2]
+	theta = (-1)*euler[2]
 
+	y = y + l*math.cos(theta)
+	x = x + l*math.sin(theta)
 	m = (y2-y1) / (x2-x1)
 	c = y1 - m*x1
 	error = (-1)*(y - m*x - c)

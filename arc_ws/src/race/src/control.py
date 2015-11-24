@@ -39,6 +39,9 @@ def control(data):
 
 	prev_error = error
 
+	print "Control error",control_error
+	print "Velocity",velocity
+	print "Angle",angle
 	msg = drive_param();
 	msg.velocity = velocity
 	msg.angle = angle
